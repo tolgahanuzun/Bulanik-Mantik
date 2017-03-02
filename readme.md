@@ -7,3 +7,5 @@
 ![Surekli Yapi](example/bulanik-surekliyapi.png)
 <hr>
 ![Ucgen uyelik](example/ucgenuyelik.png)
+<hr>
+![Ucgen uyelik](example/yasucgeni.png)
