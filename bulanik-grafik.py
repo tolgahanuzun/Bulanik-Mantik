@@ -6,7 +6,7 @@ def ayrikgrafik():
 	t =  np.arange(0.0, 9.0, 1)
 	s =  np.array([0.2,0.4,0.6,0.8,1,0.6,0.4,0.1,0])
 
-	fig = plt.figure(figsize=(6, 6))
+	fig = plt.figure(figsize=(12, 7))
 	vax = fig.add_subplot(111)
 
 	vax.plot(t, s, 'o')
@@ -24,7 +24,7 @@ def surekligrafik():
 		indisx.append(1./(1+10*((indis-5)**2)))
 	indisx =np.array(indisx)	
 	
-	fig = plt.figure(figsize=(6, 6))
+	fig = plt.figure(figsize=(12, 7))
 	vax = fig.add_subplot(111)
 	vax.plot(indisy,indisx)
 
@@ -33,7 +33,7 @@ def surekligrafik():
 
 	
 
-def ucgenuyelik():
+def ucgen():
 	indisy = np.arange(0.0, 5.1, 0.01)
 	indisx = []
 	x1=1
@@ -47,7 +47,7 @@ def ucgenuyelik():
 
 	indisx = np.array(indisx)
 	
-	fig = plt.figure(figsize=(6, 6))
+	fig = plt.figure(figsize=(12, 7))
 	vax = fig.add_subplot(111)
 	vax.plot(indisy,indisx)
 
@@ -57,6 +57,51 @@ def ucgenuyelik():
 	plt.savefig('example/ucgenuyelik.png')
 	plt.show()
 
-ucgenuyelik()	
-surekligrafik()
+def uyelikucgen(x1,xT,x2,indisy):
+	indisx = []
+	for x in indisy:
+		a=(x-x1)/(xT-x1)
+		b=(x2-x)/(x2-xT)
+		c=0;
+		indisx.append(max(min(a,b),c))
+	return indisx
+
+def ucgenodev():
+	fig = plt.figure(figsize=(12, 7))
+	vax = fig.add_subplot(111)
+	plt.grid(True)
+	vax.set_title('Yas Uyelik Ucgeni')
+
+	indisy1 = np.arange(0.0, 20.1, 0.1)
+	indisx1 = np.array(uyelikucgen(0,10,20,indisy1))	
+	vax.plot(indisy1,indisx1,label='Cocuk', color='blue')
+	vax.fill_between(indisy1, 0,indisx1, facecolor='blue', alpha=0.5)
+	vax.legend(loc='upper left', shadow=True)
+
+	indisy2 = np.arange(10.1, 40.1, 0.1)
+	indisx2 = np.array(uyelikucgen(10,20,40,indisy2))
+	vax.plot(indisy2,indisx2,label='Genc', color='orange')
+	vax.fill_between(indisy2, 0,indisx2, facecolor='orange', alpha=0.5)
+	vax.legend(loc='upper left', shadow=True)
+
+
+	indisy3 = np.arange(20.1, 60.1, 0.1)
+	indisx3 = np.array(uyelikucgen(20,40,60,indisy3))
+	vax.plot(indisy3,indisx3,label='Orta Yasli', color='green')
+	vax.fill_between(indisy3, 0,indisx3, facecolor='green', alpha=0.5)
+	vax.legend(loc='upper left', shadow=True)
+
+
+	indisy4 = np.arange(40.1, 60.1, 0.1)
+	indisx4 = np.array(uyelikucgen(40,60,60,indisy4))
+	vax.plot(indisy4,indisx4,label='Yasli', color='red')
+	vax.fill_between(indisy4, 0,indisx4, facecolor='red', alpha=0.5)
+	vax.legend(loc='upper left', shadow=True)
+
+
+	plt.savefig('example/yasucgeni.png')
+	plt.show()
 ayrikgrafik()
+surekligrafik()
+ucgen()
+ucgenodev()
