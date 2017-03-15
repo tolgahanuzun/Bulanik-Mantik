@@ -101,7 +101,54 @@ def ucgenodev():
 
 	plt.savefig('example/yasucgeni.png')
 	plt.show()
-ayrikgrafik()
-surekligrafik()
-ucgen()
-ucgenodev()
+#ucgenodev()	
+def yamuk():
+	indisy = np.arange(-2.0, 2.1, 0.1)
+	indisx = []
+	x1= -1.5
+	xT1= -0.5
+	xT2= 0.5
+	x2= 1.5
+	for x in indisy:
+		a=(x-x1)/(xT1-x1)
+		b=1.0
+		c=(x2-x)/(x2-xT2)
+		d=0.0
+		indisx.append(max(min(min(a,c),b),d))
+
+	indisx = np.array(indisx)
+	
+	fig = plt.figure(figsize=(12, 7))
+	vax = fig.add_subplot(111)
+	vax.plot(indisy,indisx)
+
+	#l, = vax.plot(np.repeat(1, 6), '--')
+	#plt.axvline(3, color='b', linestyle='dashed', linewidth=2)
+
+	plt.savefig('example/yamukuyelik.png')
+	plt.show()
+
+def gaussian():
+	indisy = np.arange(-5.0, 5.1, 0.1)
+	indisx = []
+
+	xT = 0
+	w = 1.5
+	for x in indisy:
+		a= (x-xT)/w
+		b= -(1/2)*(a**2)
+
+		indisx.append(np.exp(b))
+
+	indisx = np.array(indisx)
+	
+	fig = plt.figure(figsize=(12, 7))
+	vax = fig.add_subplot(111)
+	vax.plot(indisy,indisx)
+
+	#l, = vax.plot(np.repeat(1, 6), '--')
+	#plt.axvline(3, color='b', linestyle='dashed', linewidth=2)
+
+	#plt.savefig('example/yamukuyelik.png')
+	plt.show()
+#gaussian()	
